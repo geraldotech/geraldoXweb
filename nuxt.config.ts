@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   css: ['~/assets/main.css'],
   devtools: { enabled: true },
+  ssr: true,
   components: {
     global: true,
     dirs: ['~/components'],
