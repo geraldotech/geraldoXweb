@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   css: ['~/assets/main.css'],
   devtools: { enabled: true },
-  ssr: true,
   alias:{
     "@": "/<srcDir>",
   },
