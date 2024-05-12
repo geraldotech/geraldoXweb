@@ -1,0 +1,15 @@
+*{
+  box-sizing: border-box;
+
+  color-scheme: dark;
+}
+
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.top-menu{
+  display: flex;
+  max-width: 400px;
+  width: 100%;
+  justify-content: space-around;
+}
