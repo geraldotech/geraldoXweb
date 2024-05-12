@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   css: ['~/assets/main.css'],
   devtools: { enabled: true },
   ssr: true,
+  alias:{
+    "@": "/<srcDir>",
+  },
   components: {
     global: true,
     dirs: ['~/components'],

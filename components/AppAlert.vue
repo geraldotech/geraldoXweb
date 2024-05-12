@@ -10,7 +10,7 @@
 
 <style scoped>
 div{
-  background: red;
+  background: rgb(1, 154, 131);
   padding: 1rem;
 }
 </style>

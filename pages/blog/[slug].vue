@@ -1,12 +1,12 @@
 <script setup>
-const route = useRoute()
-
 //import { BlogPostsSonyX8 } from '#components'
 //import SonyX8 from '~/components/blog/posts/SonyX8.vue'
 
+const route = useRoute()
 const postSlug = route.params.slug
 const single = ref({})
 const isLoaded = ref(false)
+const renderView = ref('')
 const clickable = ref(true)
 
 async function handlerFetch() {
@@ -21,6 +21,7 @@ async function handlerFetch() {
       const post = await data.json()
       isLoaded.value = true
       single.value = post
+      //renderView.value = post.vuecomponent ? `BlogPosts${post.vuecomponent}` : null
     }
   } catch (error) {
     console.error(error)
@@ -28,9 +29,11 @@ async function handlerFetch() {
 }
 handlerFetch()
 
-const instance = getCurrentInstance()
-
 const AsyncComp = computed(() => {
+  if (isLoaded && !single.value.vuecomponent) {
+    return null
+  }
+
   if (isLoaded && single.value.vuecomponent) {
     // console.log(single.value.vuecomponent)
     const compoName = single.value.vuecomponent
@@ -38,8 +41,27 @@ const AsyncComp = computed(() => {
   }
 })
 
+//const instance = getCurrentInstance()
+
+/* 
+console.log(instance.appContext.components.BlogPostsSonyX8.setup()) */
+
+/* const Render = () => {
+  return h('div', instance.appContext.components.BlogPostsSonyX8.name)
+}
+ */
+
+//const renderView2 = resolveComponent(`BlogPostsSonyX8`)
+
 onMounted(() => {
-  setTimeout(() => {}, 2000)
+  //   const Existes = () => {
+  //     try {
+  //       return defineAsyncComponent(() => import(`~/components/blog/posts/SonyX8.vue`).then((res) => console.log(r)))
+  //     } catch (err) {
+  //       console.log(`error`)
+  //     }
+  //   }
+  //  Existes()
 })
 // dynamic thanks
 // https://github.com/nuxt/nuxt/issues/15448
@@ -56,14 +78,13 @@ onMounted(() => {
       <p>
         {{ single.article }}
       </p>
-      <!--  <p>DynamicImports {{ `BlogPosts` + single.vuecomponent }}</p> -->
-      <!--   <LazyBlogPostsSonyX8 v-if="single.vuecomponent" /> -->
-
-      <!-- <Component :is="isLoaded ? 'SonyX8' : null" /> -->
     </section>
     <h2 v-else>Post {{ single }}</h2>
 
     <hr />
+
     <Component :is="AsyncComp" />
+
+    <component :is="isLoaded ? 'renderView' : null" />
   </div>
 </template>
