@@ -1,5 +1,4 @@
 <template>
-  <div>
     <footer>
       <NuxtLink to="/">Home</NuxtLink>
       |
@@ -30,7 +29,6 @@
       <p>Built with VueJS by Geraldo Costa</p>
       <p>Copyright &copy; 2024 GMAPDEV</p>
     </footer>
-  </div>
 </template>
 <style scoped>
 footer {

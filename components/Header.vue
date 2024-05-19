@@ -1,51 +1,81 @@
 <script setup>
-const clickCloseMenu = () => {}
+const menustate = ref(false)
+
+
+
+
+
+onMounted(() => {
+  window.addEventListener('resize', () => {
+    // menu close
+    menustate.value = false
+    // call handleMenuChange to changeIcon
+    //this.handleMenuChangeIcon()
+  })
+})
+
 const handleMenuChangeIcon = () => {}
+
+const clickCloseMenu = () => {
+  menustate.value = !menustate.value
+}
 </script>
 <template>
-  <ul class="top-menu">
-    <li>
-      <NuxtLink to="/">Home</NuxtLink>
+  <nav class="top-homepage">
+    <li class="logo">
+      <a href="/">GPX</a>
     </li>
-    <li>
-      <a href="..#projects">Projetos</a>
-    </li>
-    <li>
-      <a href="..#experiences">Experiência</a>
-    </li>
-    <li>
-      <a href="..#skills">Habilidades</a>
-    </li>
-    <li>
-      <a href="..#contact">Contato</a>
-    </li>
-    <li>
-      <NuxtLink to="/blog">Blog</NuxtLink>
-    </li>
-  </ul>
+    <div
+      class="items_menu"
+      @click="clickCloseMenu">
+      <li>
+        <a href="..#projects">Projetos</a>
+      </li>
+      <li>
+        <a href="..#experiences">Experiência</a>
+      </li>
+      <li>
+        <a href="..#skills">Habilidades</a>
+      </li>
+      <li>
+        <a href="..#contact">Contato</a>
+      </li>
+      <li>
+        <NuxtLink to="/blog">Blog</NuxtLink>
+      </li>
+    </div>
+    <label>
+      <input
+        type="checkbox"
+        id="toggleMenu"
+        @change="handleMenuChangeIcon"
+        v-model="menustate" />
+      <span class="menuicon">
+        <i class="menuiconelement fa-solid fa-bars"></i>
+      </span>
+    </label>
+  </nav>
 
-   <AppAlert />
+<!--   <AppAlert /> -->
 </template>
 <style scoped>
 
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
 /* TOP HOME PAGE */
-.top-menu {
+.top-homepage {
   display: flex;
   list-style-type: none;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 8vh;
-  z-index: 3;
+  z-index: 5;
   background-color: #000000;
-
-  & a{
-    color: #fff;
-    text-decoration: none;
-  }
 }
 
-.top-menu .items_menu {
+.top-homepage .items_menu {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -62,7 +92,7 @@ const handleMenuChangeIcon = () => {}
     color: #fff;
   }
 }
-.top-menu .logo {
+.top-homepage .logo {
   font-weight: 900;
   font-family: 'Anta', sans-serif;
   font-size: 2.5em;
@@ -79,20 +109,21 @@ label:has(#toggleMenu) {
 }
 i.menuiconelement {
   font-size: 2rem;
+  color: #fff;
 }
 
 @media (max-width: 900px) {
   label:has(#toggleMenu) {
     display: block;
   }
-  .top-menu {
+  .top-homepage {
     position: sticky;
     display: flex;
     top: 0;
     justify-content: space-between;
     padding-inline: 0.2rem;
   }
-  .top-menu .items_menu {
+  .top-homepage .items_menu {
     position: absolute;
     top: 50px;
     z-index: 1;
@@ -111,7 +142,7 @@ i.menuiconelement {
   }
 
   /* === WHEN MENU IS CHECKED === */
-  .top-menu:has(#toggleMenu:checked) .items_menu {
+  .top-homepage:has(#toggleMenu:checked) .items_menu {
     top: 8vh;
     height: 100vh;
     overflow: hidden;
@@ -125,6 +156,4 @@ i.menuiconelement {
 }
 
 /* === TOP HOME PAGE === */
-
-
 </style>

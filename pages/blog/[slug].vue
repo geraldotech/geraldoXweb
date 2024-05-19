@@ -9,8 +9,6 @@ const isLoaded = ref(false)
 const renderView = ref('')
 const clickable = ref(true)
 
-
-
 async function handlerFetch() {
   const data = await fetch(`https://api.geraldox.com/post/${postSlug}`)
   try {
@@ -55,10 +53,6 @@ const AsyncComp = computed(() => {
 })
 
 //const instance = getCurrentInstance()
-
-
-
-
 /* 
 console.log(instance.appContext.components.BlogPostsSonyX8.setup()) */
 
@@ -67,7 +61,6 @@ console.log(instance.appContext.components.BlogPostsSonyX8.setup()) */
 }
  */
 
-//const renderView2 = resolveComponent(`BlogPostsSonyX8`)
 
 onMounted(() => {
   handlerFetch()

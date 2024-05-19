@@ -29,6 +29,7 @@ const { data } = await useFetch(url, {
 //console.log(data)
 </script>
 <template>
+ <main class="container">
   <div class="listPosts">
   <section>
     <h1>geraldoX Blog</h1>
@@ -48,13 +49,14 @@ const { data } = await useFetch(url, {
       </div>
     </section>
   </div>
+  <BlogSidebar class="sidebar"/>
+ </main>
 </template>
 
 <style scoped>
-/* .listPosts .card > div {
-  font-size: 1.2rem;
-  margin: 5px 0;
-} */
+.container{
+  display: flex;
+}
 
 section {
   padding: 10px 0;
@@ -63,9 +65,16 @@ section {
 .listPosts{
   padding: 5px;
   min-height: 80vh;
+  flex: 0 1 80%;
   /* background-color: #1c1f26; */
   background-color: rgb(2, 3, 26);
   color: #e3e1dd;
+}
+
+.sidebar{
+  flex: 1 0 20%;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .blog_card {

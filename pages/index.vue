@@ -80,7 +80,7 @@ const filterProject = (type: any) => {
 }
 </script>
 <template>
-  <main class="page-wrapper">
+  <div class="page-wrapper">
     <!-- intro -->
     <section class="intro">
       <div class="intro__content">
@@ -464,7 +464,7 @@ const filterProject = (type: any) => {
       </div>
     </section>
     <!-- CONTACT -->
-  </main>
+  </div>
 </template>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -473,9 +473,6 @@ const filterProject = (type: any) => {
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
-/* Prime Vue css and icons  */
-@import url('https://unpkg.com/primevue@2.7.0/resources/primevue.min.css');
-@import url('https://unpkg.com/primeicons@6.0.1/primeicons.css');
 
 :root {
   --primary: #8257e5;
@@ -1424,6 +1421,7 @@ ul li:nth-child(odd) .date {
   background-color: #121214;
   border-radius: 4px;
   margin: 0 5px;
+  cursor: pointer;
 }
 
 .p-button.p-button-outlined {

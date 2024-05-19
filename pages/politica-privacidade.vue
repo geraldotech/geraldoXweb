@@ -1,5 +1,6 @@
 <template>
-  <h1>Política Privacidade</h1>
+  <div class="container">
+    <h1>Política Privacidade</h1>
   <p>
     A sua privacidade é importante para nós. É política do GeraldoX respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site GeraldoX, e outros sites que possuímos
     e operamos.Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento.
@@ -21,4 +22,11 @@
     você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.Esta política é efetiva a partir de 26
     October 2023 21:16
   </p>
+  </div>
 </template>
+<style scoped>
+.container{
+  
+}
+
+</style>
