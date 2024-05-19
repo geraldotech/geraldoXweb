@@ -1,10 +1,14 @@
+ const defaultImage = './assets/img/project-default.jpg' // Default image path
+//const defaultImage = '/assets/project-default.jpg' // Default image path
+
+
 const icon = {
   html: './assets/icons/svg/html.svg',
   vuejs: './assets/icons/svg/vuejs.svg',
-  css: './assets/icons/svg/css.svg',
-  react: './assets/icons/svg/reactjs.svg',
-  javascript: '/assets/icons/svg/javascript.svg',
-  nodejs: './assets/icons/svg/nodejs.svg',
+  css: '../assets/icons/svg/css.svg',
+  react: '../assets/icons/svg/reactjs.svg',
+  javascript: './assets/icons/svg/javascript.svg',
+  nodejs: '/assets/icons/svg/nodejs.svg',
   firebase: './assets/icons/svg/firebasevertical.svg',
 }
 
@@ -72,7 +76,7 @@ const projects = [
   {
     name: 'Shopping Cart',
     url: 'https://dev.geraldox.com/projects/shoppingcart',
-    image: 'https://dev.geraldox.com/projects/ShoppingCart./shopping.png',
+    image: 'https://dev.geraldox.com/projects/ShoppingCart/src/shopping.png',
     description: 'Simulando um sistemas de compras, adicionar e remover itens ao carrinho',
     icons: [
       { title: 'HTML', path: icon.html },
@@ -126,6 +130,7 @@ const projects = [
     name: 'JS Downloader',
     url: 'https://dev.geraldox.com/projects/JSFileDownloader',
     description: 'Precisa baixar arquivos js para consumir offline, isso pode ser muito fácil no PC mas não com as limitações do mobile',
+    image: defaultImage,
     icons: [{ title: 'vuejs', path: icon.vuejs }],
   },
   {

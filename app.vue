@@ -1,11 +1,20 @@
 <template>
   <NuxtLayout>
-    <main>
+    <main class="main">
       <Header />
-      <NuxtPage />
+      <NuxtPage class="nuxtpage" />
+      <Footer />
     </main>
-
-    <Footer />
   </NuxtLayout>
 </template>
-<style scoped></style>
+<style>
+.main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+}
+</style>

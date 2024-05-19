@@ -1,8 +1,7 @@
 <script setup lang="ts">
-
 const data = await $fetch('/api/projects')
 
-const filterOn = ref(true)
+const filterOn = ref(false)
 const postsShow = ref([])
 const name = ref('')
 const message = ref('')
@@ -63,19 +62,16 @@ const handlerSubmit = () => {
 }
 // https://docs.web3forms.com/getting-started/examples/ajax-contact-form-using-javascript
 
-const test = () => {
-  postsShow.value = ''
-}
 
 const filterProject = (type: any) => {
   const filtered = data.filter((post) => post.icons.some((icon) => icon.title.toLowerCase().includes(type)))
   if (type) {
     postsShow.value = filtered
-    // this.filterOn = true
+    filterOn.value = true
   }
   if (type == '') {
     postsShow.value = data
-    // this.filterOn = false
+    filterOn.value = false
   }
 }
 </script>
@@ -153,7 +149,7 @@ const filterProject = (type: any) => {
             <h1>
               <span class="icon-link-download">
                 <a
-                  href="https://gpnotes.droppages.com/geraldox.proxyfiles.com/files/geraldo_resume_ptbr-txt.pdf"
+                  href="/api/downloadpdf"
                   target="_blank"
                   ><strong>currículo 'ptBR'</strong><i class="fa-solid fa-file-arrow-down"></i></a
               ></span>
@@ -197,14 +193,15 @@ const filterProject = (type: any) => {
             VueJS
           </button>
           <button
+            clean
             title="clean filter"
             class="p-button-sm p-button-danger p-button p-button-help"
             icon="pi pi-filter-slash"
             @click="filterProject('')"
             v-show="filterOn">
-            Clean
+            <Icon name="uil:filter-slash" size="1.2rem" />
           </button>
-          <p>Mostrando: {{ postsShow.length }}</p>
+          <p class="showing">Mostrando: {{ postsShow.length }}</p>
         </div>
         <!-- Filter -->
         <!--  @click="window.open(card.url, '_blank')" -->
@@ -248,7 +245,7 @@ const filterProject = (type: any) => {
                   <button
                     icon="pi pi-github"
                     label="Github"
-                    class="p-button-outlined p-button-help p-button p-component p-button-sm">
+                    class="p-button-outlined p-button-help-click p-button p-component p-button-sm">
                     Github
                   </button>
                 </a>
@@ -258,7 +255,7 @@ const filterProject = (type: any) => {
                   <button
                     icon="pi pi-external-link"
                     label="Deploy"
-                    class="bt__card p-button-success p-button-sm p-button-outlined p-button-sm p-button-outlined p-button-success p-button"
+                    class="bt__card p-button-success p-button-sm p-button-outlined p-button-sm p-button-outlined p-button-success-click p-button"
                     href="google.com">
                     Deploy
                   </button>
@@ -305,15 +302,6 @@ const filterProject = (type: any) => {
               <span class="date">Jan 2023 / Dez 2024</span>
               <span class="circle"></span>
             </li>
-            <!--  <li>
-              <h3 class="heading">Engenharia de Software</h3>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, aliquam autem. Quia ducimus totam sunt sint facilis perferendis sapiente neque, laudantium placeat dignissimos
-                repellat quae. Est aperiam aliquid doloribus voluptas!
-              </p>
-              <span class="date">Jan 2023 / Dez 2024</span>
-              <span class="circle"></span>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -345,59 +333,59 @@ const filterProject = (type: any) => {
           <div class="card_skill">
             <img
               loading="lazy"
-              src="./assets/icons/svg/firebasevertical.svg"
+              src="/assets/icons/svg/firebasevertical.svg"
               alt="" />
             <h3>Google Firebase</h3>
             <p>Banco de dados firebase authentication, e banco de dados - realtime e firestore</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/git.svg"
+              src="/assets/icons/svg/git.svg"
               alt="" />
             <img
-              src="./assets/icons/svg/github.svg"
+              src="/assets/icons/svg/github.svg"
               alt="" />
             <h3>Git Github</h3>
             <p>Versionamento de Código, e hospedagem dos principais projetos open source</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/reactjs.svg"
+              src="/assets/icons/svg/reactjs.svg"
               alt="" />
             <h3>ReactJS</h3>
             <p>Biblioteca front-end JavaScript de código aberto com foco em criar interfaces de usuário</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/vuejs.svg"
+              src="/assets/icons/svg/vuejs.svg"
               alt="" />
             <h3>VueJS</h3>
             <p>The Progressive JavaScript Framework building web user interfaces.</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/nodejs.svg"
+              src="/assets/icons/svg/nodejs.svg"
               alt="" />
             <h3>NodeJS</h3>
             <p>JavaScript runtime built on Chrome's V8 JavaScript engine</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/ubuntu.svg"
+              src="/assets/icons/svg/ubuntu.svg"
               alt="" />
             <h3>Linux Services</h3>
             <p>Apache LAMP, FTP server, Squid Proxy, MySQL, DHCP, IP Tables e Shell Script</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/php.svg"
+              src="/assets/icons/svg/php.svg"
               alt="" />
             <h3>PHP</h3>
             <p>Integração com banco de dados MySQL</p>
           </div>
           <div class="card_skill">
             <img
-              src="./assets/icons/svg/python.svg"
+              src="/assets/icons/svg/python.svg"
               alt="" />
             <h3>Python</h3>
             <p>gerar PDFs automaticamente</p>
@@ -458,7 +446,7 @@ const filterProject = (type: any) => {
 
         <div class="contact-image">
           <img
-            src="./assets/img/api-amico.svg"
+            src="/assets/img/api-amico.svg"
             alt="" />
         </div>
       </div>
@@ -472,7 +460,6 @@ const filterProject = (type: any) => {
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
-
 
 :root {
   --primary: #8257e5;
@@ -725,6 +712,10 @@ strong {
 .projects__filter {
   margin-top: 1.5rem;
   text-align: left;
+}
+
+.projects__filter .showing {
+  color: #fff;
 }
 
 .projects_container {
@@ -1470,5 +1461,25 @@ ul li:nth-child(odd) .date {
   color: #212121;
   background: #c5e1a5;
   border: 0 none;
+}
+
+.p-button:not([clean]):hover {
+  background: #000;
+}
+
+.p-button:not([clean]):focus {
+  background: #000 !important;
+}
+
+.p-button-success-click {
+  color: #212121 !important;
+  background: #c5e1a5 !important;
+  border: 0 none !important;
+}
+
+.p-button-help-click {
+  color: #212121 !important;
+  background: #ce93d8 !important;
+  border: 0 none !important;
 }
 </style>

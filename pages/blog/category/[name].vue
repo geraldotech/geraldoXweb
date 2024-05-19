@@ -2,24 +2,31 @@
 const route = useRoute()
 const postCat = route.params.name
 
-console.log(postCat)
 
 const { data } = await useFetch(`https://api.geraldox.com/posts/category?name=${postCat}`)
+
+
 </script>
 <template>
-  <div>
-    <h1>Categories page {{ postCat }}</h1>
+  <div v-if="data" class="listPosts">
+    <h1>Posts Categories: {{ postCat }}</h1>
     <section
-      class="cardcat"
+    v-if="!data.includes('No posts found')"
+      class="blog_card"
       v-for="card in data">
-      <p>
+      <h2>
         <Nuxt-link :to="`/blog/${card.slug}`">{{ card.title }}</Nuxt-link>
-      </p>
+      </h2>
+      <p>{{ card.createdAt }}</p>
     </section>
+    <div v-else>
+      <p>{{ data }}</p>
+    </div>
   </div>
 </template>
 <style scoped>
-div {
+.listPosts {
+  min-height: 80vh;
   padding: 1rem;
 }
 .card p {
@@ -27,5 +34,24 @@ div {
   background: rgb(14, 19, 25);
   padding: 1rem;
   margin-top: 10px;
+}
+
+
+.blog_card {
+ /*  border-top: 4px solid rgb(5, 189, 186); */
+  border-radius: 10px;
+  border: 1px solid #B0A99F;
+  background: rgb(14, 19, 25);
+  padding: 1rem;
+  margin-block: 10px;
+ 
+}
+
+.blog_card a, .blog_card{
+  color: #e3e1dd;
+}
+
+.blog_card a{
+  text-decoration: none;
 }
 </style>

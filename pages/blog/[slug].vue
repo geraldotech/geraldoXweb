@@ -80,15 +80,19 @@ onMounted(() => {
 <template>
 <div class="singlePage">
   <div class="singlePost">
-    <section v-if="!single.length">
-    
-      <div class="postheader">
+    <section v-if="!single.length">    
+      <div class="breadcrumbs">
+        <p>
+          <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink>  > 
+          <NuxtLink :to="`/blog/category/${single.category}`">{{ single.category }}</NuxtLink>
+        </p>
       <h1>{{ single.title }}</h1>
-      <p>createAt: {{ single.createdAt }} by {{ single.author }}</p>
+      <p>by: {{ single.author }} posted on: {{ single.createdAt }}</p>
       <p>lastUpdate: {{ single.lastUpdate }}</p>
+      <hr>
       </div>
       <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
-      <!-- v-html enable you can create posting using html tags -->
+      <!-- v-html enable to handle html tags from backend -->
       <p v-html="single.article"></p>
     </section>
     <h2 v-else>Post {{ single }}</h2>
@@ -116,7 +120,6 @@ onMounted(() => {
   flex-direction: column;
 }
 .singlePost{
- 
   min-height: 80vh;
   flex: 1 0 80%;
   flex-direction: column;
@@ -124,7 +127,16 @@ onMounted(() => {
 
 .singlePost > img{
   height: 100px;
- width: 200px;
+  width: 200px;
+}
+
+
+.breadcrumbs {
+  padding-block: 10px;
+  line-height: 1.4;
+}
+.breadcrumbs h1{
+  font-size: 2rem;
 }
 
 </style>

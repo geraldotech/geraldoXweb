@@ -31,9 +31,9 @@ const { data } = await useFetch(url, {
 <template>
  <main class="container">
   <div class="listPosts">
-  <section>
+  <div>
     <h1>geraldoX Blog</h1>
-  </section>
+  </div>
     <section>
       <div
         class="blog_card"
@@ -56,6 +56,7 @@ const { data } = await useFetch(url, {
 <style scoped>
 .container{
   display: flex;
+  flex-wrap: wrap;
 }
 
 section {
@@ -64,8 +65,7 @@ section {
 
 .listPosts{
   padding: 5px;
-  min-height: 80vh;
-  flex: 0 1 80%;
+  flex: 1 0 80%;
   /* background-color: #1c1f26; */
   background-color: rgb(2, 3, 26);
   color: #e3e1dd;

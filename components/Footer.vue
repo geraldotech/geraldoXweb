@@ -24,22 +24,23 @@
             cy="12"
             r="10"></circle>
           <path d="M16 12l-4-4-4 4"></path>
-          <path d="M12 16V8"></path></svg
-      ></a>
-      <p>Built with VueJS by Geraldo Costa</p>
+          <path d="M12 16V8"></path></svg>
+      </a>
+      <p>Built with VueJS/Nuxt/NodeJS by Geraldo Costa</p>
       <p>Copyright &copy; 2024 GMAPDEV</p>
     </footer>
 </template>
+
+
 <style scoped>
 footer {
-  max-width: auto;
   min-width: 200px;
   margin: auto;
   background: rgb(34, 34, 34);
   padding: 2rem;
   text-align: center;
   color: rgb(158, 149, 137);
-  font-size: 10px;
+  font-size: 11px;
   width: 100%;
   & a {
     text-decoration: none;
@@ -57,6 +58,7 @@ footer p:first-of-type {
 .backtop {
   position: fixed;
   bottom: 40px;
+  z-index: 10;
   right: 50px;
   animation: appear 1ms ease-in-out both;
   animation-timeline: scroll();
