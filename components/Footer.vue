@@ -4,6 +4,7 @@
       |
       <router-link to="/politica-privacidade">Politica de Privacidade </router-link>
       <a
+      v-show="$route.path === '/'"
         href="#top"
         class="backtop"
         ><svg

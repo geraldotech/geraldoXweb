@@ -44,8 +44,8 @@ const AsyncComp = computed(() => {
     const instance = getCurrentInstance()
     const compoName = single.value.vuecomponent
     let componentExists = `BlogPosts${compoName}` in instance.appContext.components
-    if(!componentExists){
-      return 
+    if (!componentExists) {
+      return
     }
     // only load if component exists
     return defineAsyncComponent(() => import(`~/components/blog/posts/${compoName}.vue`))
@@ -60,7 +60,6 @@ console.log(instance.appContext.components.BlogPostsSonyX8.setup()) */
   return h('div', instance.appContext.components.BlogPostsSonyX8.name)
 }
  */
-
 
 onMounted(() => {
   handlerFetch()
@@ -78,65 +77,63 @@ onMounted(() => {
 </script>
 
 <template>
-<div class="singlePage">
-  <div class="singlePost">
-    <section v-if="!single.length">    
-      <div class="breadcrumbs">
-        <p>
-          <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink>  > 
-          <NuxtLink :to="`/blog/category/${single.category}`">{{ single.category }}</NuxtLink>
-        </p>
-      <h1>{{ single.title }}</h1>
-      <p>by: {{ single.author }} posted on: {{ single.createdAt }}</p>
-      <p>lastUpdate: {{ single.lastUpdate }}</p>
-      <hr>
-      </div>
-      <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
-      <!-- v-html enable to handle html tags from backend -->
-      <p v-html="single.article"></p>
-    </section>
-    <h2 v-else>Post {{ single }}</h2>
+  <div class="singlePage">
+    <div class="singlePost">
+      <section v-if="!single.length">
+        <div class="breadcrumbs">
+          <p>
+            <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink> >
+            <NuxtLink :to="`/blog/category/${single.category}`">{{ single.category }}</NuxtLink>
+          </p>
+          <h1>{{ single.title }}</h1>
+          <p>by: {{ single.author }} posted on: {{ single.createdAt }}</p>
+          <p>lastUpdate: {{ single.lastUpdate }}</p>
+          <hr />
+        </div>
+        <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
+        <!-- v-html enable to handle html tags from backend -->
+        <p v-html="single.article"></p>
+      </section>
+      <h2 v-else>Post {{ single }}</h2>
 
-    <Component :is="AsyncComp" />
-   <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
+      <Component :is="AsyncComp" />
+      <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
+    </div>
+    <BlogSidebar class="sidebar" />
   </div>
-  <BlogSidebar class="sidebar"/>
-</div>
-
 </template>
 <style scoped>
-
-.singlePage{
+.singlePage {
   display: flex;
   flex-wrap: wrap;
 }
 
-.sidebar, .singlePost {
+.sidebar,
+.singlePost {
   padding: 10px;
+  line-height: 1.5;
 }
 
-.sidebar{
+.sidebar {
   flex: 1 0 20%;
   flex-direction: column;
 }
-.singlePost{
+.singlePost {
   min-height: 80vh;
   flex: 1 0 80%;
   flex-direction: column;
 }
 
-.singlePost > img{
+.singlePost > img {
   height: 100px;
   width: 200px;
 }
-
 
 .breadcrumbs {
   padding-block: 10px;
   line-height: 1.4;
 }
-.breadcrumbs h1{
+.breadcrumbs h1 {
   font-size: 2rem;
 }
-
 </style>

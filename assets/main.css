@@ -1,11 +1,35 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-   color-scheme: dark; 
+  color-scheme: dark;
 }
 
-body{
+body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+code {
+  color: dodgerblue;
+}
+
+.sidebar {
+  flex: 1 0 20%;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.sidebar section {
+  padding: 5px;
+}
+
+.sidebar {
+  background-color: rgb(2, 3, 26);
+}
+
+.sidebar select {
+  text-align: center;
+  width: 70%;
+  margin: 10px auto;
+  padding: 5px 0px;
+}

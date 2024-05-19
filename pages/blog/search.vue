@@ -1,38 +1,36 @@
 <script setup>
-// enabling cache
-const nuxtApp = useNuxtApp()
+const route = useRoute()
+const postCat = route.query
+const { q } = postCat
+const load = ref(false)
 
-const url = 'https://api.geraldox.com/posts'
-//const url = 'http://localhost:4444/posts'
+const { data } = await useFetch(`https://api.geraldox.com/posts/search?q=${q}`)
+onMounted(async () => {})
 
-const { data } = await useFetch(url, {
-  headers: {
-    Accept: 'application/json',
-    psw: '9090',
-    Authorization: 'Bearer GERALDODEVGPDEV',
-  },
-
-  transform(input) {
-    return {
-      ...input,
-      // fetchAt: new Date(),
+watch(
+  () => route.query.q,
+  async (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      load.value = false // Reset load to false before fetching new data
+     
+      location.reload()
     }
-  },
-  getCachedData(key) {
-    // return nullish value -> refetch the data
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
-  },
-})
+  }
+)
 
-//console.log(data)
+const clickHandler = () => {
+  console.log(load.value)
+  console.log(data)
+}
 </script>
+
 <template>
-  <main class="container">
-    <div class="listPosts">
-      <div>
-        <h1>geraldoX Blog</h1>
-      </div>
-      <section>
+  <div class="container">
+    <section class="listPosts">
+    <!--   <button @click="clickHandler">clickHandler</button> -->
+      <h1>Search Page: {{ q }}</h1>
+      <div v-if="data && data.length" class="listPosts">
+        <section>
         <div
           class="blog_card"
           v-for="post in data">
@@ -45,9 +43,13 @@ const { data } = await useFetch(url, {
           </p>
         </div>
       </section>
-    </div>
+      </div>
+      <div v-else-if="!load">Loading...</div>
+      <div v-else>No posts found.</div>
+    </section>
+
     <BlogSidebar class="sidebar" />
-  </main>
+  </div>
 </template>
 
 <style scoped>
@@ -56,14 +58,9 @@ const { data } = await useFetch(url, {
   flex-wrap: wrap;
 }
 
-section {
-  padding: 10px 0;
-}
-
 .listPosts {
   padding: 5px;
   flex: 1 0 80%;
-  /* background-color: #1c1f26; */
   background-color: rgb(2, 3, 26);
   color: #e3e1dd;
 }
@@ -77,22 +74,12 @@ section {
   margin-block: 10px;
 }
 
-.blog_card a {
+.blog_card {
   color: #e3e1dd;
 }
 
 .blog_card a {
   text-decoration: none;
-}
-
-.category a {
-  color: #60c7de;
-}
-
-time {
-  color: #b0a99f;
-}
-.blog_card h1:hover {
-  text-decoration: underline;
+  color: #e3e1dd;
 }
 </style>
