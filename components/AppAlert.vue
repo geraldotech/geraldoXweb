@@ -1,6 +1,6 @@
 <template>
   <div>
-    This is a alert component
+    em processo de migration...
   </div>
 </template>
 

@@ -10,4 +10,14 @@ export default defineNuxtConfig({
     global: true,
     dirs: ['~/components'],
   },
+  nitro: {
+    prerender: {
+      routes: ['/blog/slug'],
+    }
+  },
+  runtimeConfig: {
+    public: {
+      secret: process.env.BASEURL,
+    }
+  }
 })

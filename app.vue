@@ -1,10 +1,16 @@
+<script>
+console.log(process.env.BASEURL)
+</script>
 <template>
-  <div>
+  <main>
     <NuxtLayout>
-      <Header/>
-
-      <NuxtPage/>
-      <Footer/>
+      <Header />
+      <NuxtPage />
+      <Footer />
     </NuxtLayout>
-  </div>
+  </main>
 </template>
+<style scoped>
+
+
+</style>
