@@ -28,8 +28,9 @@ const clickHandler = () => {
   <div class="container">
     <section class="listPosts">
     <!--   <button @click="clickHandler">clickHandler</button> -->
+
       <h1>Search Page: {{ q }}</h1>
-      <div v-if="data && data.length" class="listPosts">
+      <div v-if="data && data.length && !data.includes('not posts found')" class="listPosts">
         <section>
         <div
           class="blog_card"
@@ -44,8 +45,7 @@ const clickHandler = () => {
         </div>
       </section>
       </div>
-      <div v-else-if="!load">Loading...</div>
-      <div v-else>No posts found.</div>
+      <div v-else>No posts found for {{ q }}</div>
     </section>
 
     <BlogSidebar class="sidebar" />
