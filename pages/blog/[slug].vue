@@ -7,7 +7,6 @@ const postSlug = route.params.slug
 const single = ref({})
 const isLoaded = ref(false)
 const renderView = ref('')
-const clickable = ref(true)
 
 async function handlerFetch() {
   const data = await fetch(`https://api.geraldox.com/post/${postSlug}`)
@@ -21,7 +20,6 @@ async function handlerFetch() {
       const post = await data.json()
       isLoaded.value = true
       single.value = post
-      //renderView.value = post.vuecomponent ? `BlogPosts${post.vuecomponent}` : null
     }
   } catch (error) {
     console.error(error)
@@ -83,10 +81,11 @@ onMounted(() => {
         <div class="breadcrumbs">
           <p>
             <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink> >
-            <NuxtLink :to="`/blog/category/${single.category}`">{{ single.category }}</NuxtLink>
+            <a :href="`/blog/category/${single.category}`"> {{ single.category }}</a>
           </p>
           <h1>{{ single.title }}</h1>
           <p>by: {{ single.author }} posted on: {{ single.createdAt }}</p>
+
           <p>lastUpdate: {{ single.lastUpdate }}</p>
           <hr />
         </div>
