@@ -3,6 +3,11 @@ const router = useRouter()
 const selectedOption = ref('')
 
 
+const {data} = await useFetch("https://api.geraldox.com/posts/categories")
+
+//console.log(categories[0])
+
+
 watch(selectedOption, () => {
   // console.log(selectedOption.value)
   router.push(`/blog/category/${selectedOption.value}`)
@@ -26,16 +31,9 @@ watch(selectedOption, () => {
           name="lucide:filter"
           size="1rem" />
       </h2>
-
+    
       <select v-model="selectedOption">
-        <option value="android">Android</option>
-        <option value="developer">Developer</option>
-        <option value="drivers">Drivers</option>
-        <option value="linux">Linux</option>
-        <option value="music">Music</option>
-        <option value="network">Network</option>
-        <option value="windows">Windows</option>
-        <option value="uncategorized">Uncategorized</option>
+        <option v-for="cat in data" :value="cat.category">{{ cat.category.charAt(0).toUpperCase() + cat.category.slice(1) }} - {{ cat.post_count }}</option>
       </select>
     </section>
   </div>
