@@ -68,34 +68,35 @@ onMounted(() => {
 
 <template>
   <div class="singlePage">
-    <main v-if="!single.length" class="singlePost">
-    
-        <div class="breadcrumbs">
-          <p>
-            <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink> >
-            <a :href="`/blog/category/${single.category}`"> {{ single.category }}</a>
-          </p>
-          <h1>{{ single.title }}</h1>
-          <div class="author_dates">
-            <p>By: {{ single.author }} | posted on: {{ single.createdAt }}</p>
-            <p>Updated: {{ single.lastUpdate }}</p>
-          </div>
-          <hr />
+    <main
+      v-if="!single.length"
+      class="singlePost">
+      <div class="breadcrumbs">
+        <p>
+          <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink> >
+          <a :href="`/blog/category/${single.category}`"> {{ single.category }}</a>
+        </p>
+        <h1>{{ single.title }}</h1>
+        <div class="author_dates">
+          <p>By: {{ single.author }} | posted on: {{ single.createdAt }}</p>
+          <p>Updated: {{ single.lastUpdate }}</p>
         </div>
-        <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
-        <!-- v-html enable to handle html tags from backend -->
-        <!-- only apply article class if has single.article, void min-height from css -->
-        <article
-          :class="single.length && 'article'"
-          v-html="single.article">
-        </article>
-        <Component :is="AsyncComp" />
-      
-        <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
-        <BlogSidebottom class="sidebottom" :category="single.category" />
-      
+        <hr />
+      </div>
+      <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
+      <!-- v-html enable to handle html tags from backend -->
+      <!-- only apply article class if has single.article, void min-height from css -->
+      <article
+        :class="single.length && 'article'"
+        v-html="single.article"></article>
+      <Component :is="AsyncComp" />
+
+      <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
+      <BlogSidebottom
+        class="sidebottom"
+        :category="single.category" />
     </main>
-    <h2 v-else>Post {{ single }}</h2>
+    <h2 v-else class="singlePost">Post {{ single }}</h2>
     <BlogSidebar class="sidebar" />
   </div>
 </template>
@@ -147,10 +148,9 @@ onMounted(() => {
   font-size: 2rem;
 }
 
-.article{
+.article {
   flex: 1;
   min-height: 20vh;
- 
 }
 article {
   margin: 10px 0;

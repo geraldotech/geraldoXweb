@@ -53,7 +53,7 @@ useFetch(async () => {
         >
       </nav>
     </section>
-    <div else>No Related Posts!</div>
+    <div v-show="!posts.length">No Related Posts!</div>
   </div>
 </template>
 <style scoped>
