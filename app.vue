@@ -14,7 +14,7 @@
   flex-direction: column;
 }
 
-.container {
+.nuxtpage {
   flex: 1;
 }
 </style>

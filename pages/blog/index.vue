@@ -1,30 +1,53 @@
 <script setup>
-// enabling cache
-const nuxtApp = useNuxtApp()
 
 const url = 'https://api.geraldox.com/posts'
 //const url = 'http://localhost:4444/posts'
 
-const { data } = await useFetch(url, {
-  headers: {
-    Accept: 'application/json',
-    psw: '9090',
-    Authorization: 'Bearer GERALDODEVGPDEV',
-  },
+const currentPage = ref(1)
+const postsPerPage = 10
 
-  transform(input) {
-    return {
-      ...input,
-      // fetchAt: new Date(),
+const fetchData = async () => {
+  const response = await fetch(`${url}?_page=${currentPage.value}&_limit=${postsPerPage}`, {
+    headers: {
+      Accept: 'application/json',
+      psw: '9090',
+      Authorization: 'Bearer GERALDODEVGPDEV',
     }
-  },
-  getCachedData(key) {
-    // return nullish value -> refetch the data
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
-  },
+  })
+  return await response.json()
+}
+
+const responseData = ref([])
+
+fetchData().then(data => {
+  responseData.value = data
 })
 
-//console.log(data)
+const totalPages = computed(() => Math.ceil(responseData.value.length / postsPerPage))
+
+const paginatedPosts = computed(() => {
+  const startIndex = (currentPage.value - 1) * postsPerPage
+  const endIndex = startIndex + postsPerPage
+  return responseData.value.slice(startIndex, endIndex)
+})
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+    fetchData().then(data => {
+      responseData.value = data
+    })
+  }
+}
+
+const previousPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--
+    fetchData().then(data => {
+      responseData.value = data
+    })
+  }
+}
 </script>
 <template>
   <main class="container">
@@ -35,7 +58,8 @@ const { data } = await useFetch(url, {
       <section>
         <div
           class="blog_card"
-          v-for="post in data">
+          v-for="post in paginatedPosts"
+          :key="post.id">
           <h1>
             <NuxtLink :to="`/blog/${post.slug}`"> {{ post.title }}</NuxtLink>
           </h1>
@@ -45,10 +69,16 @@ const { data } = await useFetch(url, {
           </p>
         </div>
       </section>
+      <div class="pagination">
+        <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+      </div>
     </div>
     <BlogSidebar class="sidebar" />
   </main>
 </template>
+
 
 <style scoped>
 .container {
@@ -94,5 +124,23 @@ time {
 }
 .blog_card h1:hover {
   text-decoration: underline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 </style>

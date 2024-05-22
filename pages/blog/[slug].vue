@@ -61,14 +61,6 @@ console.log(instance.appContext.components.BlogPostsSonyX8.setup()) */
 
 onMounted(() => {
   handlerFetch()
-  //   const Existes = () => {
-  //     try {
-  //       return defineAsyncComponent(() => import(`~/components/blog/posts/SonyX8.vue`).then((res) => console.log(r)))
-  //     } catch (err) {
-  //       console.log(`error`)
-  //     }
-  //   }
-  //  Existes()
 })
 // dynamic thanks
 // https://github.com/nuxt/nuxt/issues/15448
@@ -76,28 +68,34 @@ onMounted(() => {
 
 <template>
   <div class="singlePage">
-    <div class="singlePost">
-      <section v-if="!single.length">
+    <main v-if="!single.length" class="singlePost">
+    
         <div class="breadcrumbs">
           <p>
             <NuxtLink to="/">Home</NuxtLink> > <NuxtLink to="/blog">Blog</NuxtLink> >
             <a :href="`/blog/category/${single.category}`"> {{ single.category }}</a>
           </p>
           <h1>{{ single.title }}</h1>
-          <p>by: {{ single.author }} posted on: {{ single.createdAt }}</p>
-
-          <p>lastUpdate: {{ single.lastUpdate }}</p>
+          <div class="author_dates">
+            <p>By: {{ single.author }} | posted on: {{ single.createdAt }}</p>
+            <p>Updated: {{ single.lastUpdate }}</p>
+          </div>
           <hr />
         </div>
         <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
         <!-- v-html enable to handle html tags from backend -->
-        <p v-html="single.article"></p>
-      </section>
-      <h2 v-else>Post {{ single }}</h2>
-
-      <Component :is="AsyncComp" />
-      <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
-    </div>
+        <!-- only apply article class if has single.article, void min-height from css -->
+        <article
+          :class="single.length && 'article'"
+          v-html="single.article">
+        </article>
+        <Component :is="AsyncComp" />
+      
+        <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
+        <BlogSidebottom class="sidebottom" :category="single.category" />
+      
+    </main>
+    <h2 v-else>Post {{ single }}</h2>
     <BlogSidebar class="sidebar" />
   </div>
 </template>
@@ -105,6 +103,17 @@ onMounted(() => {
 .singlePage {
   display: flex;
   flex-wrap: wrap;
+}
+
+.singlePage .author_dates {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.singlePage img {
+  width: 100%;
+  max-width: 50%;
 }
 
 .sidebar,
@@ -118,21 +127,32 @@ onMounted(() => {
   flex-direction: column;
 }
 .singlePost {
-  min-height: 80vh;
+  display: flex; /* flex too */
+  min-height: 50vh;
   flex: 1 0 80%;
   flex-direction: column;
 }
 
-.singlePost > img {
+/* .singlePostz > img {
   height: 100px;
   width: 200px;
-}
+} */
 
 .breadcrumbs {
   padding-block: 10px;
   line-height: 1.4;
+  margin: 4px 0;
 }
 .breadcrumbs h1 {
   font-size: 2rem;
+}
+
+.article{
+  flex: 1;
+  min-height: 20vh;
+ 
+}
+article {
+  margin: 10px 0;
 }
 </style>

@@ -15,9 +15,6 @@ code {
   color: dodgerblue;
 }
 
-.singlePage img{
-  width: 100%;
-}
 
 .sidebar {
   flex: 1 0 20%;
@@ -25,9 +22,6 @@ code {
   padding: 10px;
 }
 
-.sidebar section {
-  padding: 5px;
-}
 
 .sidebar {
   background-color: rgb(2, 3, 26);
@@ -38,4 +32,28 @@ code {
   width: 70%;
   margin: 10px auto;
   padding: 5px 0px;
+}
+
+.imgflex figure:has(img) {
+  text-align: center;
+  display: block;
+}
+
+figure:has(img) {
+  text-align: center;
+  display: block;
+}
+
+.imgflex img {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+
+.singlePost figure:has(img) img {
+  text-align: center;
 }

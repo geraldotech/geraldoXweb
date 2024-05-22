@@ -9,7 +9,14 @@ const { data } = await useFetch(`https://api.geraldox.com/posts/category?name=${
     <div
       v-if="data"
       class="listPosts">
-      <h1>Posts Categories: {{ postCat }}</h1>
+      <h1>{{ postCat.charAt(0).toUpperCase() + postCat.slice(1) }}</h1>
+      <figure
+        v-show="$route.params.name === 'android'"
+        class="banner">
+        <img
+          src="/assets/img/android.png"
+          alt="android.png" />
+      </figure>
 
       <section
         v-if="!data.includes('No posts found')"
@@ -64,6 +71,7 @@ const { data } = await useFetch(`https://api.geraldox.com/posts/category?name=${
   color: #e3e1dd;
 }
 
-
-
+.banner{
+  width: 100%;
+}
 </style>
