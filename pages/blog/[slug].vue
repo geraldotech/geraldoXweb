@@ -1,4 +1,15 @@
 <script setup>
+
+useHead({
+  script: [
+    {
+      src: 'https://git.geraldox.com/JavaScript/Clipboard/copy-snippet_pre_webComponents-pre/src/snippet-x.js',
+      // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
+      tagPosition: 'bodyClose'
+    }
+  ]
+})
+
 //import { BlogPostsSonyX8 } from '#components'
 //import SonyX8 from '~/components/blog/posts/SonyX8.vue'
 

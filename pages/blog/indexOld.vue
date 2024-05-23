@@ -19,7 +19,7 @@ const { data } = await useFetch(url, {
     }
   },
   getCachedData(key) {
-    // return nullish value -> refetch the data
+    // return nullish value -> refetch the data 
     return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
   },
 })
