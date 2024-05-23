@@ -4,7 +4,6 @@ const selectedOption = ref('')
 
 const { data } = await useFetch('https://api.geraldox.com/posts/categories')
 
-//console.log(categories[0])
 
 watch(selectedOption, () => {
   // console.log(selectedOption.value)
@@ -16,12 +15,15 @@ watch(selectedOption, () => {
     <section>
       <BlogSearchInput />
     </section>
-    <h3>
+  
+    <section>
+      <h3>
       Category:
       <Icon
         name="lucide:filter"
         size="1rem" />
     </h3>
+    </section>
     <section class="category">
       <select v-model="selectedOption">
         <option
@@ -37,20 +39,23 @@ watch(selectedOption, () => {
       <figure class="imgflex">
         <img
           src="https://geraldox.com/src/assets/img/pairprogramming-amico.svg"
-          alt="" />
+          alt="pairprogramming" />
       </figure>
     </section>
   </div>
 </template>
-<style>
-.formSearch input {
-  border: none;
-  padding: 8px;
-  border: 1px solid;
-  margin: 0 2px;
+<style scoped>
+
+.sidebar section{
+ padding-block: 10px;
 }
 
 .sidebar .category{
   text-align: center;
+}
+
+.sidebar .imgflex{
+  max-width: 300px;
+  margin: auto;
 }
 </style>

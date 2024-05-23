@@ -48,4 +48,11 @@ const searchHandler = () => {
 .formSearch input:first-child {
   flex: 1 0 60%;
 }
+
+.formSearch input {
+  border: none;
+  padding: 8px;
+  border: 1px solid;
+  margin: 0 2px;
+}
 </style>

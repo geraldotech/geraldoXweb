@@ -154,5 +154,6 @@ onMounted(() => {
 }
 article {
   margin: 10px 0;
+  flex: 1;
 }
 </style>

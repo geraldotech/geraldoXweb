@@ -3,8 +3,8 @@
     <main class="main">
       <Header />
       <NuxtPage class="nuxtpage" />
-      <Footer />
     </main>
+    <Footer />
   </NuxtLayout>
 </template>
 <style>

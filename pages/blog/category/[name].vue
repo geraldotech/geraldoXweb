@@ -71,7 +71,7 @@ const { data } = await useFetch(`https://api.geraldox.com/posts/category?name=${
   color: #e3e1dd;
 }
 
-.banner{
+.banner img{
   width: 100%;
 }
 </style>

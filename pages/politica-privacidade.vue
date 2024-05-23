@@ -25,7 +25,14 @@
   </div>
 </template>
 <style scoped>
-.container{
+
+.container h1{
+  margin-top: 20px;
+  text-align: center;
+}
+.container p{
+  padding: 1rem;
+  line-height: 1.5;
   
 }
 
