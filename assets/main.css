@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+
+:root {
+  --primary-color: #007bff; /* Primary color */
+  --secondary-color: #6c757d; /* Secondary color */
+  --success-color: #28a745; /* Success color */
+  --danger-color: #dc3545; /* Danger color */
+  --warning-color: #ffc107; /* Warning color */
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -56,6 +65,10 @@ figure:has(img) {
   text-align: center;
 }
 
+main.singlePost {
+  xwidth: 100%;
+}
+
 
 /* Buttons */
 
@@ -69,19 +82,19 @@ figure:has(img) {
   cursor: pointer;
 }
 
-.button.primary {
+.primary {
   background-color: var(--primary-color);
 }
-.button.secondary {
+.secondary {
   background-color: var(--secondary-color);
 }
-.button.success {
+.success {
   background-color: var(--success-color);
 }
-.button.warning {
+.warning {
   background-color: var(--warning-color);
 }
-.button.danger {
+.danger {
   background-color: var(--danger-color);
 }
 

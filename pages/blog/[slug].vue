@@ -1,13 +1,12 @@
 <script setup>
-
 useHead({
   script: [
     {
-      src: 'https://git.geraldox.com/JavaScript/Clipboard/copy-snippet_pre_webComponents-pre/src/snippet-x.js',
+   //   src: '/assets/copy.js',
       // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
-      tagPosition: 'bodyClose'
-    }
-  ]
+      tagPosition: 'bodyClose',
+    },
+  ],
 })
 
 //import { BlogPostsSonyX8 } from '#components'
@@ -53,6 +52,7 @@ const AsyncComp = computed(() => {
     const instance = getCurrentInstance()
     const compoName = single.value.vuecomponent
     let componentExists = `BlogPosts${compoName}` in instance.appContext.components
+    //console.log(`BlogPosts${compoName}` , componentExists)
     if (!componentExists) {
       return
     }
@@ -107,11 +107,16 @@ onMounted(() => {
         class="sidebottom"
         :category="single.category" />
     </main>
-    <h2 v-else class="singlePost">Post {{ single }}</h2>
+    <h2
+      v-else
+      class="singlePost">
+      Post {{ single }}
+    </h2>
     <BlogSidebar class="sidebar" />
   </div>
 </template>
 <style scoped>
+
 .singlePage {
   display: flex;
   flex-wrap: wrap;
