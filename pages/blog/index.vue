@@ -1,5 +1,4 @@
 <script setup>
-
 const url = 'https://api.geraldox.com/posts'
 //const url = 'http://localhost:4444/posts'
 
@@ -12,14 +11,14 @@ const fetchData = async () => {
       Accept: 'application/json',
       psw: '9090',
       Authorization: 'Bearer GERALDODEVGPDEV',
-    }
+    },
   })
   return await response.json()
 }
 
 const responseData = ref([])
 
-fetchData().then(data => {
+fetchData().then((data) => {
   responseData.value = data
 })
 
@@ -34,7 +33,7 @@ const paginatedPosts = computed(() => {
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++
-    fetchData().then(data => {
+    fetchData().then((data) => {
       responseData.value = data
     })
   }
@@ -43,7 +42,7 @@ const nextPage = () => {
 const previousPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--
-    fetchData().then(data => {
+    fetchData().then((data) => {
       responseData.value = data
     })
   }
@@ -70,15 +69,23 @@ const previousPage = () => {
         </div>
       </section>
       <div class="pagination">
-        <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+        <button
+          @click="previousPage"
+          :disabled="currentPage === 1">
+          Previous
+        </button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+        <button
+          @click="nextPage"
+          :disabled="currentPage === totalPages">
+          Next
+        </button>
       </div>
+      <p>published posts: {{ responseData.length }}</p>
     </div>
     <BlogSidebar class="sidebar" />
   </main>
 </template>
-
 
 <style scoped>
 .container {

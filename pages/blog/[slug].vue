@@ -2,7 +2,7 @@
 useHead({
   script: [
     {
-   //   src: '/assets/copy.js',
+      //   src: '/assets/copy.js',
       // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
       tagPosition: 'bodyClose',
     },
@@ -97,10 +97,12 @@ onMounted(() => {
       <!-- <p>vuecomponent: {{ single.vuecomponent }}</p> -->
       <!-- v-html enable to handle html tags from backend -->
       <!-- only apply article class if has single.article, void min-height from css -->
-      <article
-        :class="single.length && 'article'"
-        v-html="single.article"></article>
-      <Component :is="AsyncComp" />
+
+      <article>
+        <div        
+          v-html="single.article"></div>
+        <Component :is="AsyncComp" />
+      </article>
 
       <!--  <component :is="isLoaded ? 'renderView' : null" /> -->
       <BlogSidebottom
@@ -116,7 +118,6 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-
 .singlePage {
   display: flex;
   flex-wrap: wrap;
@@ -164,7 +165,7 @@ onMounted(() => {
   font-size: 2rem;
 }
 
-.article {
+article {
   flex: 1;
   min-height: 20vh;
 }

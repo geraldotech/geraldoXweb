@@ -1,20 +1,13 @@
 <script setup>
 const menustate = ref(false)
 
-
-
-
-
 onMounted(() => {
   window.addEventListener('resize', () => {
     // menu close
     menustate.value = false
-    // call handleMenuChange to changeIcon
-    //this.handleMenuChangeIcon()
   })
 })
 
-const handleMenuChangeIcon = () => {}
 
 const clickCloseMenu = () => {
   menustate.value = !menustate.value
@@ -48,10 +41,9 @@ const clickCloseMenu = () => {
       <input
         type="checkbox"
         id="toggleMenu"
-        @change="handleMenuChangeIcon"
         v-model="menustate" />
       <span class="menuicon">
-        <i class="menuiconelement fa-solid fa-bars"></i>
+        <i :class="`menuiconelement fa-solid ${menustate ? 'fa-x' : 'fa-bars'}`"></i>
       </span>
     </label>
   </nav>
@@ -59,8 +51,6 @@ const clickCloseMenu = () => {
 <!--   <AppAlert /> -->
 </template>
 <style scoped>
-
-
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
 /* TOP HOME PAGE */

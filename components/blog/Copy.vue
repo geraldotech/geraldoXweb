@@ -1,4 +1,6 @@
 <script setup>
+/* 
+if use block add block attribute when use component call*/
 const props = defineProps({
   attr: {
     type: String,
@@ -16,7 +18,7 @@ const btncopy = () => {
   btnCopy.value.textContent = 'copied'
 
   navigator.clipboard.writeText(codeAtual).then(() => {
-    setTimeout(() => btnCopy.value.textContent = 'copy', 2000)
+    setTimeout(() => (btnCopy.value.textContent = 'copy'), 2000)
   })
 }
 </script>
@@ -24,17 +26,19 @@ const btncopy = () => {
   <section class="copy">
     <p>{{ attr ? attr : '' }}</p>
     <div class="clipboard">
-     <pre ref="copy">
-       <slot default />
-     </pre>
-
-      <button @click="btncopy" ref="btnCopy">Copy</button>
+      <pre><slot default ref="copy" /></pre>
+      <button
+        @click="btncopy"
+        ref="btnCopy">
+        Copy
+      </button>
     </div>
   </section>
 </template>
 <style scoped>
 .clipboard {
   display: flex;
+  padding: 8px;
   justify-content: space-between;
   align-items: center;
   background: #0e1425;
@@ -59,13 +63,13 @@ section p {
   text-align: center;
 }
 pre {
-  overflow: scroll;
+  white-space: break-spaces;
+  overflow-x: scroll;
   margin: 0;
 }
 
-pre {
+pre[block] {
   white-space: break-spaces;
-  overflow: scroll;
   line-height: 1.5;
   color: #2c70ff;
   padding: 0;
@@ -96,4 +100,5 @@ button {
     margin-left: right;
   }
 }
+
 </style>

@@ -54,7 +54,7 @@ figure:has(img) {
 .imgflex img,
 .singlePost figure img {
   overflow: hidden;
-  max-width: 600px;
+  max-width: 400px;
   width: 100%;
   height: auto;
   display: block;
@@ -100,4 +100,14 @@ main.singlePost {
 
 .button:hover {
   background-color: #0056b3;
+}
+
+nav:has(.button) {
+  text-align: center;
+}
+nav:has(.button) a{
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  margin: 15px auto;
 }
