@@ -1,8 +1,14 @@
 <template>
     <footer>
+      <p>Built with VueJS/Nuxt/NodeJS by Geraldo Costa</p>
+      <p>Copyright &copy; 2024 GMAPDEV</p>
+
       <NuxtLink to="/">Home</NuxtLink>
       |
-      <router-link to="/politica-privacidade">Politica de Privacidade </router-link>
+      <router-link to="/politica-privacidade">Politica de Privacidade </router-link>|
+      <a href="https://geraldox.netlify.app/" target="_blank">Legacy version</a>
+
+      <!-- only show top on homepage -->
       <a
       v-show="$route.path === '/'"
         href="#top"
@@ -27,8 +33,7 @@
           <path d="M16 12l-4-4-4 4"></path>
           <path d="M12 16V8"></path></svg>
       </a>
-      <p>Built with VueJS/Nuxt/NodeJS by Geraldo Costa</p>
-      <p>Copyright &copy; 2024 GMAPDEV</p>
+    
     </footer>
 </template>
 

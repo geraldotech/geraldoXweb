@@ -38,7 +38,7 @@ watch(selectedOption, () => {
     <section>
       <figure class="imgflex">
         <img
-          src="https://geraldox.com/src/assets/img/pairprogramming-amico.svg"
+          src="../../assets/img/pairprogramming-amico.svg"
           alt="pairprogramming" />
       </figure>
     </section>
