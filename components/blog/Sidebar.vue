@@ -1,11 +1,8 @@
 <script setup>
 const router = useRouter()
 const selectedOption = ref('')
-
 const { data } = await useFetch('https://api.gcosta.shop/posts/categories')
-  console.warn(data)
-
-
+  
 watch(selectedOption, () => {
   // console.log(selectedOption.value)
   router.push(`/blog/category/${selectedOption.value}`)
