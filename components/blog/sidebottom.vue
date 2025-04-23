@@ -13,7 +13,7 @@ const posts = ref([])
 
 useFetch(async () => {
   try {
-    const data = await $fetch(`https://api.geraldox.com/posts/category?name=${props.category}`)
+    const data = await $fetch(`https://api.gcosta.shop/posts/category?name=${props.category}`)
     // Ensure data is an array and then slice it
     // ensure that data is an array before applying array methods like filter and slice
     if (Array.isArray(data)) {
