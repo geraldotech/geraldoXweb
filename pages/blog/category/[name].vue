@@ -2,7 +2,7 @@
 const route = useRoute()
 const postCat = route.params.name
 
-const { data } = await useFetch(`https://api.geraldox.com/posts/category?name=${postCat}`)
+const { data } = await useFetch(`https://api.gcosta.shop/posts/category?name=${postCat}`)
 </script>
 <template>
   <div class="container">
