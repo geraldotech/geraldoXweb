@@ -4,7 +4,7 @@ const postCat = route.query
 const { q } = postCat
 const load = ref(false)
 
-const { data } = await useFetch(`https://api.geraldox.com/posts/search?q=${q}`)
+const { data } = await useFetch(`https://api.gcosta.shop/posts/search?q=${q}`)
 onMounted(async () => {})
 
 watch(
