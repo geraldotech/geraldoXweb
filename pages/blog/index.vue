@@ -1,5 +1,5 @@
 <script setup>
-const url = 'https://api.geraldox.com/posts'
+const url = 'https://api.gcosta.shop/posts' 
 //const url = 'http://localhost:4444/posts'
 
 const currentPage = ref(1)
