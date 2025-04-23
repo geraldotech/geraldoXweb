@@ -19,7 +19,7 @@ const isLoaded = ref(false)
 const renderView = ref('')
 
 async function handlerFetch() {
-  const data = await fetch(`https://api.geraldox.com/post/${postSlug}`)
+  const data = await fetch(`https://api.gcosta.shop/post/${postSlug}`)
   try {
     if (!data.ok) {
       single.value = data.statusText
