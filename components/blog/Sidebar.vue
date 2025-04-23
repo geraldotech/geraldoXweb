@@ -2,7 +2,7 @@
 const router = useRouter()
 const selectedOption = ref('')
 
-const { data } = await useFetch('https://api.geraldox.com/posts/categories')
+const { data } = await useFetch('https://api.gcosta.shop/posts/categories')
 
 
 watch(selectedOption, () => {
